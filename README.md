@@ -3,7 +3,7 @@
 [Смотреть макеты](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?type=design&node-id=1-2&t=7wWpCV4czdytZJlu-0)
 ---
 ### Деплой 
-[Netlify]()
+[Netlify](https://spiffy-taiyaki-156f74.netlify.app/)
 ---
 ### Команды 
 - `npm install` — установка проекта
