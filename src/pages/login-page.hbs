@@ -1,0 +1,18 @@
+{{!< main }}
+<main class="logon">
+  <div class="logon__container">
+    <p class="logon__label">Вход</p>
+    <form action="./chat-page.html" class="logon__login-form">
+      <div class="logon__field-container">
+        {{> common/custom-field/custom-field name="login" type="text" label="Логин" helper="Неверный логин"}}
+      </div>
+      <div class="logon__field-container">
+        {{> common/custom-field/custom-field name="password" type="password" label="Пароль" helper=""}}
+      </div>
+      <div class="logon__submit logon__submit_large-margin">
+        {{> common/main-button/main-button text="Авторизоваться"}}
+      </div>
+    </form>
+    {{> common/sub-button/sub-button href="./register-page.hbs" text="Нет аккаунта?"}}
+  </div>
+</main>

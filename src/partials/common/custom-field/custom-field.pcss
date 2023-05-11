@@ -1,0 +1,40 @@
+.custom-field {
+  position: relative;
+
+  width: 100%;
+  border-bottom: 1px solid var(--buttom-blue-color);
+
+  &__label {
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+
+    color: var(--gray-text);
+    background-color: white;
+    pointer-events: none;
+    transition: all 20ms;
+  }
+
+  &__input {
+    padding-top: 8px;
+
+    &:focus + .custom-field__label,
+    &:not(:placeholder-shown) + .custom-field__label {
+      top: 0px;
+      left: 0;
+      font-size: 9px;
+      line-height: 9px;
+      height: 9px;
+    }
+  }
+
+  &__input-helper {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+    color: #ff2f2f;
+  }
+}

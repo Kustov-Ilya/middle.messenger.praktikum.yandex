@@ -1,0 +1,65 @@
+{{!< main }}
+<main class="profile">
+  <article class="profile__side-part">
+    <form action="./chat-page.html">
+    <button class="profile__back-button">
+      <img class="profile__arrow" src="../asserts/arrow_forward.svg" />
+    </button>
+    </form>
+  </article>
+  <section class="profile__work-area">
+    <div class="profile__container">
+      <div class="profile__logo-container">
+        <img
+          src="../asserts/profile-logo.svg"
+          alt=""
+          class="profile__logo"
+        />
+        <div class="profile__logo-overlay">
+          Поменять<br />аватар
+        </div>
+      </div>
+      <div class="profile__name">Валера</div>
+      <ul class="profile__fields-block">
+        <li class="profile__field-container">
+          {{> common/profile-field/profile-field name="email" type="text" label="Почта" readonly=view }}
+        </li>
+        <li class="profile__field-container">
+          {{> common/profile-field/profile-field name="login" type="text" label="Логин" readonly=view}}
+        </li>
+        <li class="profile__field-container">
+          {{> common/profile-field/profile-field name="first_name" type="text" label="Имя" readonly=view}}
+        </li>
+        <li class="profile__field-container">
+          {{> common/profile-field/profile-field name="second_name" type="text" label="Фамилия" readonly=view}}
+        </li>
+        <li class="profile__field-container">
+          {{> common/profile-field/profile-field name="display_name" type="text" label="Имя в чате" readonly=view}}
+        </li>
+        <li class="profile__field-container">
+          {{> common/profile-field/profile-field name="phone" type="text" label="Телефон" readonly=view}}
+        </li>
+      </ul>
+      <ul class="profile__actions-area">
+        <li class="profile__button-container">
+          {{> common/sub-button/sub-button 
+            classes="sub-button_13px"
+            href="./edit-profile-page.hbs" 
+            text="Изменить данные"}}
+        </li>
+        <li class="profile__button-container">
+          {{> common/sub-button/sub-button 
+            classes="sub-button_13px"
+          href="./edit-password-page.hbs" 
+          text="Изменить пароль"}}
+        </li>
+        <li class="profile__button-container">
+          {{> common/sub-button/sub-button 
+            classes="sub-button_13px sub-button_red"
+          href="./login-page.hbs" 
+          text="Выйти"}}
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>

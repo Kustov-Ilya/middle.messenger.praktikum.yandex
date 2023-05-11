@@ -1,0 +1,24 @@
+.chats-list {
+  height: 100%;
+  overflow-y: auto;
+
+  &:hover, &:focus,
+  &:active,
+  &:focus {
+    overflow-y: auto;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: inherit;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: var(--gray-color);
+  }
+}
