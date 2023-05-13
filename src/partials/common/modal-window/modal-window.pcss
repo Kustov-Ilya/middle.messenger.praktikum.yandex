@@ -1,0 +1,38 @@
+.modal-window {
+  @mixin flex-center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+
+  &__container {
+    @mixin box-shadow-black;
+    @mixin flex-column;
+    align-items: center;
+    box-sizing: border-box;
+
+    width: 340px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    background: white;
+  }
+
+  &__title {
+    font-size: 15px;
+    line-height: 20px;
+    padding-bottom: 50px;
+  }
+
+  &__content-block {
+    width: 100%;
+    padding-bottom: 33px;
+  }
+
+  &__submit {
+    width: 100%;
+  }
+}

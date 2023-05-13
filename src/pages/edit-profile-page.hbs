@@ -1,0 +1,41 @@
+{{!< main }} 
+<main class="profile">
+  <article class="profile__side-part">
+    <form action="./chat-page.html">
+      <button class="profile__back-button">
+        <img class="profile__arrow" src="../asserts/arrow_forward.svg" alt="Иконка кнопки перехода обратно в чат" />
+      </button>
+    </form>
+  </article>
+  <section class="profile__work-area">
+    <div class="profile__container">
+      <div class="profile__logo-container">
+        <img src="../asserts/profile-logo.svg" alt="" class="profile__logo" />
+      </div>
+      <div class="profile__name">Валера</div>
+      <form action="./profile-page.html" class="profile__fields-block">
+        <div class="profile__field-container">
+          {{> common/profile-field/profile-field name="email" type="text" label="Почта" }}
+        </div>
+        <div class="profile__field-container">
+          {{> common/profile-field/profile-field name="login" type="text" label="Логин" }}
+        </div>
+        <div class="profile__field-container">
+          {{> common/profile-field/profile-field name="first_name" type="text" label="Имя" }}
+        </div>
+        <div class="profile__field-container">
+          {{> common/profile-field/profile-field name="second_name" type="text" label="Фамилия" }}
+        </div>
+        <div class="profile__field-container">
+          {{> common/profile-field/profile-field name="display_name" type="text" label="Имя в чате" }}
+        </div>
+        <div class="profile__field-container">
+          {{> common/profile-field/profile-field name="phone" type="text" label="Телефон" }}
+        </div>
+        <div class="profile__save-button">
+          {{> common/main-button/main-button text="Сохранить"}}
+        </div>
+      </form>
+    </div>
+  </section>
+</main>

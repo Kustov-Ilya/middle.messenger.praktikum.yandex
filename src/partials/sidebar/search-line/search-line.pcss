@@ -1,0 +1,28 @@
+.search-line {
+  box-sizing: border-box;
+  
+  height: 42px;
+  width: 100%;
+  padding: 0px 10px 10px 10px;
+  border-radius: 5px;
+
+  &__input {
+    text-align: center;
+    width: 100%;
+    border-radius: 5px;
+    background-image: url("../asserts/search-icon.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 5px;
+
+    &::placeholder {
+      color: var(--gray-text);
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      text-align: left;
+      padding-left: 30px;
+    }
+  }
+}
