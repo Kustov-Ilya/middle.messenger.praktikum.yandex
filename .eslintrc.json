@@ -6,22 +6,35 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "settings": {
-    "import/extensions": [".js", ".ts"],
+    "import/extensions": [
+      ".js",
+      ".ts"
+    ],
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts"]
+      "@typescript-eslint/parser": [
+        ".ts"
+      ]
     }
   },
   "rules": {
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
     "no-underscore-dangle": 0,
     "no-param-reassign": 0,
     "class-methods-use-this": 0,
     "no-use-before-define": 0,
     "no-useless-constructor": 0,
-    "@typescript-eslint/no-non-null-assertion":0,
-    "no-console": 1, 
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "no-console": 1,
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "error",
     "no-var": "error",

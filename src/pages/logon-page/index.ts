@@ -14,7 +14,7 @@ export default class LogonPage extends Block {
   protected init(): void {
     const { type } = this.props;
     const logonSettings = logonMeta[type as string];
-    
+
     this.props.login = type == "login";
 
     this.children.fields = logonSettings.fields.map(
@@ -22,8 +22,7 @@ export default class LogonPage extends Block {
     );
     this.children.submit = new MainButton(logonSettings.submit);
     this.children.subbutton = new SubButton(logonSettings.subbutton);
-    
-    
+
     if (!this.props.events) this.props.events = {};
     (this.props.events as BlockEvents).submit = this.onSubmit.bind(this);
   }
