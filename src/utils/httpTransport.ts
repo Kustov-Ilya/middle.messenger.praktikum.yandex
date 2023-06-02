@@ -1,42 +1,30 @@
 import { METHODS } from "./consts";
 import queryStringify from "./queryStringify";
-import { requestOptions } from "./types";
+import { HTTPMethod, RequestOptions } from "./types";
 
 export default class HTTPTransport {
-  get = (
-    url: string,
-    options: requestOptions = {}
-  ): Promise<XMLHttpRequest> => {
+  get: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.GET },
       options.timeout
     );
   };
-  post = (
-    url: string,
-    options: requestOptions = {}
-  ): Promise<XMLHttpRequest> => {
+  post: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.POST },
       options.timeout
     );
   };
-  put = (
-    url: string,
-    options: requestOptions = {}
-  ): Promise<XMLHttpRequest> => {
+  put: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.PUT },
       options.timeout
     );
   };
-  delete = (
-    url: string,
-    options: requestOptions = {}
-  ): Promise<XMLHttpRequest> => {
+  delete: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.DELETE },
@@ -46,7 +34,7 @@ export default class HTTPTransport {
 
   request = (
     url: string,
-    options: requestOptions = {},
+    options: RequestOptions,
     timeout = 5000
   ): Promise<XMLHttpRequest> => {
     const { method, data, headers } = options;

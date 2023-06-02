@@ -1,7 +1,6 @@
-import { logonStruct, profileStruct } from "./types";
+import { LogonStruct, ProfileStruct } from "./types";
 
-
-export const logonMeta: Record<string, logonStruct> = {
+export const logonMeta: Record<string, LogonStruct> = {
   login: {
     fields: [
       {
@@ -69,7 +68,7 @@ export const logonMeta: Record<string, logonStruct> = {
   },
 };
 
-export const profileMeta: Record<string, profileStruct> = {
+export const profileMeta: Record<string, ProfileStruct> = {
   profile: {
     fields: [
       {
@@ -117,7 +116,7 @@ export const profileMeta: Record<string, profileStruct> = {
       },
       {
         classes: "sub-button_13px",
-        href: "/profile/editPassword.hbs",
+        href: "/profile/editPassword",
         text: "Изменить пароль",
       },
       {

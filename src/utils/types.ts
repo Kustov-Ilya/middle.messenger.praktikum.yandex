@@ -1,6 +1,6 @@
 import { METHODS } from "./consts";
 
-export type chatDataType = {
+export type ChatDataType = {
   id: number;
   chatName: string;
   lastMessage: string;
@@ -9,7 +9,7 @@ export type chatDataType = {
   unreadCount: string;
 };
 
-export type messageDataType = {
+export type MessageDataType = {
   id: number;
   textMessage?: string;
   imageMessage?: string;
@@ -18,23 +18,28 @@ export type messageDataType = {
   ownStatus?: string;
 };
 
-export interface requestOptions {
+export interface RequestOptions {
   headers?: Record<string, string>;
   method?: METHODS;
   data?: Record<string, unknown>;
   timeout?: number;
 }
 
-type stringObj = Record<string, string>;
+type StringObj = Record<string, string>;
 
-export type logonStruct = {
-  fields: stringObj[];
-  submit: stringObj;
-  subbutton: stringObj;
+export type LogonStruct = {
+  fields: StringObj[];
+  submit: StringObj;
+  subbutton: StringObj;
 };
 
-export type profileStruct = {
-  fields: stringObj[];
-  saveButton: stringObj | null;
-  subbuttons: stringObj[];
+export type ProfileStruct = {
+  fields: StringObj[];
+  saveButton: StringObj | null;
+  subbuttons: StringObj[];
 };
+
+export type HTTPMethod = (
+  url: string,
+  options?: RequestOptions
+) => Promise<XMLHttpRequest>;

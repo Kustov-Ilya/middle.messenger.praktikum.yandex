@@ -1,9 +1,9 @@
 import { chatsList, messagesList } from "./chatData";
-import { chatDataType, messageDataType } from "./types";
+import { ChatDataType, MessageDataType } from "./types";
 
 function prepareDataForChat(
-  data: (chatDataType | messageDataType)[]
-): (chatDataType | messageDataType)[] {
+  data: (ChatDataType | MessageDataType)[]
+): (ChatDataType | MessageDataType)[] {
   return data
     .map((elem) => {
       elem.date = new Date(elem.date);
@@ -16,9 +16,9 @@ function prepareDataForChat(
 }
 
 export function getChatList() {
-  return prepareDataForChat(chatsList) as chatDataType[];
+  return prepareDataForChat(chatsList) as ChatDataType[];
 }
 
 export function getMessages() {
-  return prepareDataForChat(messagesList) as messageDataType[];
+  return prepareDataForChat(messagesList) as MessageDataType[];
 }

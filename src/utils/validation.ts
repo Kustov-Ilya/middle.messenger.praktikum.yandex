@@ -1,8 +1,8 @@
 import Block from "./block";
-import { patterns } from "./consts";
+import { PATTERNS } from "./consts";
 
-function checkRegexOnError(value: string, type: keyof typeof patterns) {
-  return patterns[type].regex.test(value) ? "" : patterns[type].error;
+function checkRegexOnError(value: string, type: keyof typeof PATTERNS) {
+  return PATTERNS[type].regex.test(value) ? "" : PATTERNS[type].error;
 }
 
 export function validation(

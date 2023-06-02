@@ -6,7 +6,7 @@ export type BlockProps = Record<string, unknown>;
 export type BlockChilds = Record<string, Block | Block[]>;
 export type BlockEvents = Record<string, (evt: Event) => void>;
 
-export default class Block {
+export default abstract class Block {
   private _element: HTMLElement | null = null;
   private _meta: { tagName: string; props: BlockProps };
   private eventBus: () => EventBus;

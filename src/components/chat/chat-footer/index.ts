@@ -31,9 +31,9 @@ export default class ChatFooter extends Block {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const formClass = "chat-footer__form";
+    const inputClass = "chat-footer__new-message";
     const target = (e.target! as HTMLElement).getElementsByClassName(
-      formClass
+      inputClass
     )[0] as HTMLInputElement;
     const resultOfValidation = validation(
       target.value,

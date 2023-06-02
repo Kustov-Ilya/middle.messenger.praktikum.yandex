@@ -12,7 +12,7 @@ export const enum METHODS {
   DELETE = "DELETE",
 }
 
-export const patterns = {
+export const PATTERNS = {
   name: {
     regex: /^[A-ZА-ЯЁ-][A-Za-zА-Яа-яёЁ-]+$/,
     error: "Первая буква - заглавная, возможно тире",

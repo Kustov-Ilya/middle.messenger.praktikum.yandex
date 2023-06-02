@@ -1,8 +1,7 @@
 import image from "../asserts/image-exsample.png";
-import { chatDataType, messageDataType } from "./types";
+import { ChatDataType, MessageDataType } from "./types";
 
-
-export const chatsList: chatDataType[] = [
+export const chatsList: ChatDataType[] = [
   {
     id: 1,
     chatName: "CHAT 1",
@@ -102,7 +101,7 @@ export const chatsList: chatDataType[] = [
   },
 ];
 
-export const messagesList: messageDataType[] = [
+export const messagesList: MessageDataType[] = [
   {
     id: 1,
     textMessage:
