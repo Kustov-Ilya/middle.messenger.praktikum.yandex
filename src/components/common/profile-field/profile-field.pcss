@@ -1,0 +1,26 @@
+.profile-field {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  height: 33px;
+
+  &__label {
+    flex-shrink: 0;
+  }
+
+  &__input {
+    text-align: right;
+    color: var(--gray-text);
+  }
+
+  &__input-helper {
+    position: absolute;
+    left: 0;
+    top: 25px;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+    color: #ff2f2f;
+  }
+}

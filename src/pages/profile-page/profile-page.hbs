@@ -1,0 +1,44 @@
+<main class="profile">
+  <article class="profile__side-part">
+    <form action="/chat">
+      <button class="profile__back-button">
+        <img
+          class="profile__arrow"
+          src="{{arrowForwardIcon}}"
+          alt="Иконка кнопки перехода обратно в чат"
+        />
+      </button>
+    </form>
+  </article>
+  <section class="profile__work-area">
+    <div class="profile__container">
+      <div class="profile__logo-container">
+        <img src="{{profileLogo}}" alt="" class="profile__logo" />
+        <div class="profile__logo-overlay">
+          Поменять<br />аватар
+        </div>
+      </div>
+      <div class="profile__name">{{userName}}</div>
+      <form class="profile__fields-block">
+        {{#each fields}}
+          <div class="profile__field-container">
+            {{{this}}}
+          </div>
+        {{/each}}
+        {{#if saveButton}}
+          <div class="profile__save-button  {{#if editPass}}profile__save-button_big-margin{{/if}}">
+            {{{saveButton}}}
+          </div>
+        {{/if}}
+      </form>
+      <ul class="profile__actions-area">
+        {{#each subbuttons}}
+          <div class="profile__button-container">
+            {{{this}}}
+          </div>
+        {{/each}}
+      </ul>
+    </div>
+  </section>
+  {{{modal}}}
+</main>

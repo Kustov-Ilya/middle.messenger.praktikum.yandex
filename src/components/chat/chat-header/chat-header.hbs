@@ -1,0 +1,32 @@
+<header class="chat-header">
+  <div class="chat-header__user-info">
+    <div class="chat-header__logo"></div>
+    <p class="chat-header__name">Design Destroyer</p>
+  </div>
+  <div class="chat-header__options-button">
+    <img
+      class="chat-header__options"
+      src="{{optionsIcon}}"
+      alt="Иконка опций добавления и удаления пользователей из беседы"
+    />
+  </div>
+  <ul class="chat-header__sub-menu {{#if hiddenMenu}}chat-header__sub-menu_hidden{{/if}}">
+    <li class="chat-header__menu-item chat-header__add-user">
+      <img
+        class="chat-header__menu-img"
+        src="{{addIcon}}"
+        alt="Иконка добавления пользователя в беседу"
+      />
+      <p class="chat-header__menu-text">Добавить пользователя</p>
+    </li>
+    <li class="chat-header__menu-item chat-header__delete-user">
+      <img
+        class="chat-header__menu-img chat-header__menu-img_rotate45"
+        src="{{addIcon}}"
+        alt="Иконка удаления пользователя из беседы"
+      />
+      <p class="chat-header__menu-text">Удалить пользователя</p>
+    </li>
+  </ul>
+  {{{modal}}}
+</header>

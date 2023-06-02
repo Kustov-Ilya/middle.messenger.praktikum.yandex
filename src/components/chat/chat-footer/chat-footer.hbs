@@ -1,0 +1,52 @@
+<footer class="chat-footer">
+  <div class="chat-footer__container">
+    <div class="chat-footer__options-button">
+      <img
+        class="chat-footer__options"
+        src="{{clipIcon}}"
+        alt="Иконка вложений к сообщению"
+      />
+    </div>
+    <form action="" class="chat-footer__form">
+      <input
+        class="chat-footer__new-megssage"
+        type="search"
+        name="message"
+        placeholder="Сообщение"
+      />
+      <button class="chat-footer__send-message">
+        <img
+          class="chat-footer__arrow"
+          src="{{arrowForwardIcon}}"
+          alt="Иконка кнопки отправки сообщения"
+        />
+      </button>
+    </form>
+  </div>
+  <ul class="chat-footer__sub-menu {{#if hiddenMenu}}chat-footer__sub-menu_hidden{{/if}}">
+    <li class="chat-footer__menu-item">
+      <img
+        class="chat-footer__menu-img"
+        src="{{photoIcon}}"
+        alt="Иконка добавления фото или видео в сообщение"
+      />
+      <p class="chat-footer__menu-text">Фото или видео</p>
+    </li>
+    <li class="chat-footer__menu-item">
+      <img
+        class="chat-footer__menu-img"
+        src="{{fileIcon}}"
+        alt="Иконка добавления файла к сообщению"
+      />
+      <p class="chat-footer__menu-text">Файл</p>
+    </li>
+    <li class="chat-footer__menu-item">
+      <img
+        class="chat-footer__menu-img"
+        src="{{locationIcon}}"
+        alt="Иконка кнопки скидывания локации"
+      />
+      <p class="chat-footer__menu-text">Локация</p>
+    </li>
+  </ul>
+</footer>

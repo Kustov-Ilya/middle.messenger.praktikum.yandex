@@ -1,26 +1,22 @@
 @import "./variables.pcss";
 @import "./mixins.pcss";
-
-
-@import "./chat.pcss";
-@import "./logon.pcss";
-@import "./profile.pcss";
-@import "./error.pcss";
-
-@import "../partials/sidebar/sidebar-header/sidebar-header.pcss";
-@import "../partials/sidebar/search-line/search-line.pcss";
-@import "../partials/sidebar/chats-list/chats-list.pcss";
-@import "../partials/sidebar/chat-item/chat-item.pcss";
-@import "../partials/chat/chat-header/chat-header.pcss";
-@import "../partials/chat/chat-footer/chat-footer.pcss";
-@import "../partials/chat/chat-space/chat-space.pcss";
-@import "../partials/chat/text-message/text-message.pcss";
-@import "../partials/chat/image-message/image-message.pcss";
-@import "../partials/common/profile-field/profile-field.pcss";
-@import "../partials/common/custom-field/custom-field.pcss";
-@import "../partials/common/main-button/main-button.pcss";
-@import "../partials/common/sub-button/sub-button.pcss";
-@import "../partials/common/modal-window/modal-window.pcss";
+@import "../pages/chat-page/chat.pcss";
+@import "../pages/logon-page/logon.pcss";
+@import "../pages/profile-page/profile.pcss";
+@import "../pages/error-page/error.pcss";
+@import "../components/sidebar/sidebar-header/sidebar-header.pcss";
+@import "../components/sidebar/search-line/search-line.pcss";
+@import "../components/sidebar/chat-item/chat-item.pcss";
+@import "../components/chat/chat-header/chat-header.pcss";
+@import "../components/chat/chat-footer/chat-footer.pcss";
+@import "../components/chat/text-message/text-message.pcss";
+@import "../components/chat/image-message/image-message.pcss";
+@import "../components/common/profile-field/profile-field.pcss";
+@import "../components/common/custom-field/custom-field.pcss";
+@import "../components/common/main-button/main-button.pcss";
+@import "../components/common/sub-button/sub-button.pcss";
+@import "../components/common/modal-window/modal-window.pcss";
+@import "../components/chat/date-separator/date-separator.pcss";
 
 html {
   width: 100%;
@@ -29,7 +25,7 @@ html {
 body {
   margin: 0;
   background-color: var(--main-bg-color);
-  font-family: "Inter", sans-serif;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
@@ -72,7 +68,7 @@ a {
 }
 
 button {
-  font-family: "Inter", sans-serif;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;

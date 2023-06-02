@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "stylelint-config-recommended"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "selector-class-pattern": null
+  },
+  "ignoreFiles": [
+    "dist/*"
+  ]
+}

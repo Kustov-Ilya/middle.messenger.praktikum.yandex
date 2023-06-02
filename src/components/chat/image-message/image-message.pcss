@@ -1,0 +1,36 @@
+.image-message {
+  @mixin flex-column;
+
+  &__container {
+    display: inline-block;
+    position: relative;
+
+    max-width: 380px;
+    width: fit-content;
+    border-radius: 12px;
+    margin-bottom: 10px;
+
+    &_left {
+      align-self: flex-end;
+    }
+  }
+
+  &__metainfo {
+    position: absolute;
+    right: 11px;
+    bottom: 11px;
+  }
+
+  &__time {
+    display: inline;
+
+    font-size: 9px;
+    line-height: 9px;
+    color: var(--gray-text);
+  }
+
+  &__flag {
+    display: inline;
+    padding-right: 4px;
+  }
+}

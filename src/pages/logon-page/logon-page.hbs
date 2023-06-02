@@ -1,0 +1,16 @@
+<main class="logon">
+  <div class="logon__container">
+    <p class="logon__label">Вход</p>
+    <form action="./chat-page.html" class="logon__login-form">
+      {{#each fields}}
+        <div class="logon__field-container">
+          {{{this}}}
+        </div>
+      {{/each}}
+      <div class="logon__submit {{#if login}}logon__submit_large-margin{{/if}}">
+        {{{submit}}}
+      </div>
+    </form>
+    {{{subbutton}}}
+  </div>
+</main>
