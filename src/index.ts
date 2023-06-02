@@ -13,7 +13,7 @@ const pages: Record<string, Block> = {
   "/profile/editProfile": new ProfilePage({ type: "editProfile" }),
   "/profile/editPassword": new ProfilePage({ type: "editPassword" }),
   "/error/404": new ErrorPage({ error: "404", description: "Не туда попали" }),
-  "/error/500": new ErrorPage({ error: "404", description: "Мы уже чиним" }),
+  "/error/500": new ErrorPage({ error: "500", description: "Мы уже чиним" }),
   "/chat": new ChatPage(),
   "/": new HomePage(),
 };
@@ -23,7 +23,7 @@ function selectPage() {
     renderDOM(pages[window.location.pathname]);
   } else {
     window.history.replaceState(null, "", "/error/404");
-    renderDOM(pages["error404Page"]);
+    renderDOM(pages["/error/404"]);
   }
 }
 
