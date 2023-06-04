@@ -1,0 +1,17 @@
+<article class="text-message">
+  <div class="text-message__container {{#if own}}text-message__container_left{{/if}}">
+    <div class="text-message__text">
+      {{textMessage}}
+    </div>
+    <span class="text-message__metainfo">
+      <div class="text-message__inner-metainfo">
+        <img
+          src="{{checkIcon}}"
+          alt="Иконка сообщение прочитано"
+          class="text-message__flag"
+        />
+        <p class="text-message__time">{{time}}</p>
+      </div>
+    </span>
+  </div>
+</article>

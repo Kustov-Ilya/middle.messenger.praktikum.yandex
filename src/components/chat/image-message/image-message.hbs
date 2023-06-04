@@ -1,0 +1,19 @@
+<article class="image-message">
+  <div class="image-message__container {{#if own}}image-message__container_left{{/if}}">
+    <img
+      src="{{imageMessage}}"
+      alt=""
+      class="image-message__image"
+      alt="Фотография в сообщении"
+    />
+    <div class="image-message__metainfo">
+      <img
+        src="{{checkIcon}}"
+        alt=""
+        class="image-message__flag"
+        alt="Иконка сообщение прочитано"
+      />
+      <p class="image-message__time">10:05</p>
+    </div>
+  </div>
+</article>

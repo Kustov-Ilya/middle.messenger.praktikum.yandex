@@ -1,0 +1,23 @@
+{{!< main }}
+<main class="chat">
+  <article class="chat__sidebar-container">
+    {{{sidebarHeader}}}
+    {{{searchLine}}}
+    <section class="chats-list">
+      {{#each chats}}
+        {{{this}}}
+      {{/each}}
+    </section>
+  </article>
+  <article class="chat__chat-container">
+    {{{chatHeader}}}
+    <selection class="chat-space">
+      <div class="chat-space__container">
+      {{#each messages}}
+        {{{this}}}
+      {{/each}}
+      </div>
+    </selection>
+    {{{chatFooter}}}
+  </article>
+</main>
