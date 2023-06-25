@@ -1,11 +1,15 @@
 <article class="chat-item">
-  <div class="chat-item__container {{#if selected}}chat-item__container_selected{{/if}}">
-  <div class="chat-item__icon"></div>
-  <div class="chat-item__main-info">
-    <p class="chat-item__name">{{chatName}}</p>
-    <p class="chat-item__last-message chat-item__last-message_preffix">{{lastMessage}}</p>
+  <div class="chat-item__container">
+  <div class="chat-item__icon">
+    {{#if avatar}}
+      <img src="https://ya-praktikum.tech/api/v2/resources/{{avatar}}" alt="" class="profile__logo" />
+    {{/if}}
   </div>
-  <p class="chat-item__date">{{date}}</p>
-  <div class="chat-item__unread-count">{{unreadCount}}</div>
+  <div class="chat-item__main-info">
+    <p class="chat-item__name">{{title}}</p>
+    <p class="chat-item__last-message {{#if own}}chat-item__last-message_preffix{{/if}}">{{last_message.content}}</p>
+  </div>
+  <p class="chat-item__date">{{time}}</p>
+  {{#if unread_count}}<div class="chat-item__unread-count">{{unread_count}}</div>{{/if}}
   </div>
 </article>

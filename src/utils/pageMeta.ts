@@ -1,6 +1,7 @@
-import { LogonStruct, ProfileStruct } from "./types";
+import { ROUTER } from "./consts";
+import { ProfileStruct } from "./types";
 
-export const logonMeta: Record<string, LogonStruct> = {
+export const logonMeta = {
   login: {
     fields: [
       {
@@ -16,7 +17,7 @@ export const logonMeta: Record<string, LogonStruct> = {
     ],
     submit: { text: "Авторизоваться" },
     subbutton: {
-      href: "/register",
+      href: ROUTER.REGISTER,
       text: "Нет аккаунта?",
     },
   },
@@ -62,7 +63,7 @@ export const logonMeta: Record<string, LogonStruct> = {
       text: "Зарегистрироваться",
     },
     subbutton: {
-      href: "/login",
+      href: ROUTER.LOGIN,
       text: "Войти",
     },
   },
@@ -111,17 +112,17 @@ export const profileMeta: Record<string, ProfileStruct> = {
     subbuttons: [
       {
         classes: "sub-button_13px",
-        href: "/profile/editProfile",
+        href: ROUTER.EDIT_PROFILE,
         text: "Изменить данные",
       },
       {
         classes: "sub-button_13px",
-        href: "/profile/editPassword",
+        href: ROUTER.EDIT_PASSWORD,
         text: "Изменить пароль",
       },
       {
         classes: "sub-button_13px sub-button_red",
-        href: "/login",
+        href: ROUTER.LOGIN,
         text: "Выйти",
       },
     ],

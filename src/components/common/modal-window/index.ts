@@ -1,4 +1,4 @@
-import Block, { BlockProps } from "../../../utils/block";
+import Block, { BlockProps } from "../../../core/block";
 import template from "./modal-window.hbs";
 
 export default class Modal extends Block {

@@ -1,6 +1,7 @@
-import Block, { BlockProps } from "../../utils/block";
+import Block, { BlockProps } from "../../core/block";
 import template from "./error-page.hbs";
 import SubButton from "../../components/common/sub-button";
+import { ROUTER } from "../../utils/consts";
 
 export default class ErrorPage extends Block {
   constructor(props: BlockProps = {}) {
@@ -9,7 +10,7 @@ export default class ErrorPage extends Block {
 
   protected init(): void {
     this.children.subbutton = new SubButton({
-      href: "/chat",
+      href: ROUTER.CHATS,
       text: "Назад к чатам",
     });
   }

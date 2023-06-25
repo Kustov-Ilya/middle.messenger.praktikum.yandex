@@ -1,7 +1,6 @@
 .chat-header {
   height: 54px;
   width: 100%;
-  z-index: 100;
 
   &__user-info {
     display: inline-flex;
@@ -19,6 +18,8 @@
   }
 
   &__logo {
+    @mixin flex-center;
+    overflow: hidden;
     flex-shrink: 0;
     width: 34px;
     height: 34px;
@@ -68,7 +69,7 @@
     box-sizing: border-box;
 
     width: 210px;
-    height: 90px;
+    height: 135px;
     padding: 10px;
     border-radius: 12px;
     background-color: white;

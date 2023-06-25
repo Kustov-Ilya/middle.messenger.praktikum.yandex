@@ -2,6 +2,7 @@ export const enum EVENTS {
   INIT = "init",
   FLOW_CDM = "flow:component-did-mount",
   FLOW_CDU = "flow:component-did-update",
+  FLOW_CWU = "flow:component-will-unmount",
   FLOW_RENDER = "flow:render",
 }
 
@@ -11,6 +12,28 @@ export const enum METHODS {
   PUT = "PUT",
   DELETE = "DELETE",
 }
+
+export const enum ROUTER {
+  LOGIN = "/",
+  NOT_FOUND = "/error/404",
+  SERVER_ERROR = "/error/500",
+  REGISTER = "/register",
+  CHATS = "/chats",
+  VIEW_PROFILE = "/profile",
+  EDIT_PROFILE = "/profile/editProfile",
+  EDIT_PASSWORD = "/profile/editPassword",
+}
+
+export const enum WS_EVENTS {
+  OPEN = "open",
+  CLOSE = "close",
+  MESSAGE = "message",
+  ERROR = "error",
+}
+
+export const API_ENDPOINT = "https://ya-praktikum.tech/api/v2";
+export const WS_ENDPOINT = "wss://ya-praktikum.tech/ws/chats";
+export const ROOT_QUERY = "#root";
 
 export const PATTERNS = {
   name: {
@@ -41,3 +64,39 @@ export const PATTERNS = {
   oneDigit: { regex: /\d/, error: "Должно содержать цифру" },
   message: { regex: /.+/, error: "Должно содержать символ" },
 };
+
+export const LoginFields = ["login", "password"] as const;
+export const RegisterFields = [
+  "first_name",
+  "second_name",
+  "login",
+  "email",
+  "password",
+  "passwordRepeat",
+  "phone",
+] as const;
+
+export const UserFields = [
+  "id",
+  "login",
+  "first_name",
+  "second_name",
+  "display_name",
+  "avatar",
+  "phone",
+  "email",
+] as const;
+
+export const UserDataField = [
+  "second_name",
+  "first_name",
+  "login",
+  "display_name",
+  "phone",
+  "email",
+];
+export const UpdatePasswordFields = [
+  "oldPassword",
+  "newPassword",
+  "newPasswordRepeat",
+] as const;

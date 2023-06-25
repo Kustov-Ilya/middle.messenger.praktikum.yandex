@@ -1,12 +1,48 @@
-import Block, { BlockProps, BlockEvents } from "../../../utils/block";
+import Block, { BlockProps, BlockEvents } from "../../../core/block";
 import template from "./chat-header.hbs";
 import optionsIcon from "../../../asserts/options.svg";
 import addIcon from "../../../asserts/add.svg";
 import CustomField from "../../common/custom-field";
 import MainButton from "../../common/main-button";
 import modalController from "../../../utils/modalController";
+import avatarLogo from "../../../asserts/avatar-logo.svg";
+import UploadFileField from "../../common/upload-file-field";
+import Store from "../../../core/store";
+import {
+  addAvatar,
+  addUsers,
+  deleteUsers,
+} from "../../../services/chatService";
+import { withStore } from "../../../utils/withStore";
 
-export default class ChatHeader extends Block {
+const store = Store.Instance();
+
+function addUserHandler(e: Event) {
+  const body = getBodyForChangeChatUsers(e);
+  store.dispatch(addUsers, body);
+}
+
+function deleteUserHandler(e: Event) {
+  const body = getBodyForChangeChatUsers(e);
+  store.dispatch(deleteUsers, body);
+}
+
+function getBodyForChangeChatUsers(e: Event) {
+  const formData = new FormData(e.target as HTMLFormElement);
+  const body = {
+    users: (formData.get("users") as string).split(","),
+    chatId: store.getState().selectedChat!.id.toString(),
+  };
+  return body;
+}
+
+function addChatAvatarHandler(e: Event) {
+  const formData = new FormData(e.target as HTMLFormElement);
+  formData.append("chatId", store.getState().selectedChat!.id.toString());
+  store.dispatch(addAvatar, formData);
+}
+
+class ChatHeader extends Block {
   constructor(props: BlockProps = {}) {
     super("ChatHeader", props);
   }
@@ -15,9 +51,17 @@ export default class ChatHeader extends Block {
     this.props.optionsIcon = optionsIcon;
     this.props.addIcon = addIcon;
     this.props.hiddenMenu = true;
+    this.props.avatarLogo = avatarLogo;
 
     if (!this.props.events) this.props.events = {};
     (this.props.events as BlockEvents).click = this.onClick.bind(this);
+  }
+
+  protected componentDidUpdate(
+    oldProps: BlockProps,
+    newProps: BlockProps
+  ): boolean {
+    return super.componentDidUpdate(oldProps, newProps);
   }
 
   protected render(): DocumentFragment {
@@ -25,19 +69,39 @@ export default class ChatHeader extends Block {
   }
 
   onClick(e: Event) {
-    const classes = (e.target as HTMLElement).className;
+    let classes = (e.target as HTMLElement).className;
     const parentClasses = (e.target as HTMLElement).parentElement!.className;
     if (classes.includes("chat-header__options")) {
       this.setProps({ hiddenMenu: !this.props.hiddenMenu });
     }
+    classes = classes.concat(parentClasses);
 
-    if (classes.concat(parentClasses).includes("chat-header__add-user")) {
+    if (classes.includes("chat-header__add-user")) {
       this.showModal("add");
     }
-
-    if (classes.concat(parentClasses).includes("chat-header__delete-user")) {
+    if (classes.includes("chat-header__delete-user")) {
       this.showModal("delete");
     }
+    if (classes.includes("chat-header__change-avatar")) {
+      this.showModalAvatar();
+    }
+  }
+
+  showModalAvatar() {
+    const formSettings = {
+      title: "Загрузите файл",
+      field: new UploadFileField({ name: "avatar" }),
+      button: new MainButton({
+        text: "Добавить",
+      }),
+    };
+
+    modalController(
+      this.children,
+      this.dispatchComponentDidMount.bind(this),
+      addChatAvatarHandler,
+      formSettings
+    );
   }
 
   showModal(mode: string) {
@@ -45,24 +109,21 @@ export default class ChatHeader extends Block {
       title: `${mode == "add" ? "Добавить" : "Удалить"} пользователя`,
       field: new CustomField({
         type: "text",
-        name: "login",
-        label: "Логин пользователя",
+        name: "users",
+        label: "Пользователи",
       }),
       button: new MainButton({
         text: `${mode == "add" ? "Добавить" : "Удалить"}`,
-        events: {
-          click: () => {
-            delete this.children.modal;
-            this.dispatchComponentDidMount();
-          },
-        },
       }),
     };
 
     modalController(
       this.children,
       this.dispatchComponentDidMount.bind(this),
+      mode == "add" ? addUserHandler : deleteUserHandler,
       formSettings
     );
   }
 }
+
+export default withStore(ChatHeader, ["selectedChat"]);

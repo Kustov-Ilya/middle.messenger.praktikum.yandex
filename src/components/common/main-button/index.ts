@@ -1,4 +1,4 @@
-import Block, { BlockProps } from "../../../utils/block";
+import Block, { BlockProps } from "../../../core/block";
 import template from "./main-button.hbs";
 
 export default class MainButton extends Block {

@@ -1,14 +1,30 @@
 .sidebar-header {
   flex-shrink: 0;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
+
+  &__create-chat {
+    padding: 4px 4px 4px 5px;
+    margin-left: 12px;
+    height: fit-content;
+    color: var(--gray-text);
+    background: inherit;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: var(--hovered-color);
+      border-radius: 10px;
+    }
+  }
 
   &__profile {
     display: flex;
     align-content: center;
     box-sizing: border-box;
 
-    width: 75px;
+    width: 80px;
     padding: 4px 0px 4px 5px;
     margin: 16px 10px 16px 0px;
     cursor: pointer;
@@ -20,7 +36,7 @@
     }
   }
 
-  &__prifile-label {
+  &__profile-label {
     padding-right: 8px;
     color: var(--gray-text);
   }

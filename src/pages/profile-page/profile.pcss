@@ -39,12 +39,16 @@
   &__logo-container {
     @mixin flex-center;
     position: relative;
-
+    overflow: hidden;
     width: 130px;
     height: 130px;
     border-radius: 50%;
     margin-bottom: 21px;
     background-color: var(--gray-bg-color);
+  }
+
+  &__logo {
+    max-height: 100%;
   }
 
   &__logo-overlay {

@@ -1,4 +1,4 @@
-import Block, { BlockProps } from "../../../utils/block";
+import Block, { BlockProps } from "../../../core/block";
 import template from "./search-line.hbs";
 
 export default class SearchLine extends Block {

@@ -1,10 +1,12 @@
 <header class="sidebar-header">
-  <a href="/profile" class="sidebar-header__profile">
-    <div class="sidebar-header__prifile-label">Профиль</div>
+  <button class="sidebar-header__create-chat">Создать чат</button>
+  <a href="{{toProfile}}" class="sidebar-header__profile">
+    <div class="sidebar-header__profile-label">Профиль</div>
     <img
       src="{{arrorRightIcon}}"
       class="sidebar-header__arrow"
       alt="Иконка перехода в профиль"
     />
   </a>
+  {{{modal}}}
 </header>
