@@ -92,10 +92,12 @@ class ChatPage extends Block {
   }
 
   createMessages() {
-    return createMessageList(
-      this.props.messageData as MessageDataType[],
-      (this.props.userData as UserData).id
-    );
+    if (this.props.userData) {
+      return createMessageList(
+        this.props.messageData as MessageDataType[],
+        (this.props.userData as UserData).id
+      );
+    } else return [];
   }
 
   createChats() {
