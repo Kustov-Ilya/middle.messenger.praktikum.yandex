@@ -13,12 +13,6 @@ window.addEventListener("DOMContentLoaded", () => {
     ) {
       initRouter(store);
     }
-    // eslint-disable-next-line no-console
-    console.log(
-      "%cstore updated",
-      "background: #222; color: #bada55",
-      nextState
-    );
   });
 
   store.dispatch(initApp);

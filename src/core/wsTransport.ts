@@ -31,12 +31,14 @@ export default class WSTransport {
   }
 
   getOffsetMessages(offset = "0") {
+    console.log('ofset')
+    console.log(this.socket);
     const body = JSON.stringify({ content: offset, type: "get old" });
     this.socket!.send(body);
   }
 
   private openListener() {
-    setTimeout(this.getOffsetMessages.bind(this),0);
+    setTimeout(this.getOffsetMessages.bind(this),50);
 
     this.pingInterval = setInterval(() => {
       this.socket!.send(JSON.stringify({ type: "ping" }));
@@ -92,6 +94,7 @@ export default class WSTransport {
   }
 
   private removeListeners() {
+    console.log('remove')
     this.socket!.removeEventListener(
       WS_EVENTS.OPEN,
       this.openListener.bind(this)
