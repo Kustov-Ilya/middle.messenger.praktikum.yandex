@@ -36,7 +36,7 @@ export default class WSTransport {
   }
 
   private openListener() {
-    this.getOffsetMessages();
+    setTimeout(this.getOffsetMessages.bind(this),0);
 
     this.pingInterval = setInterval(() => {
       this.socket!.send(JSON.stringify({ type: "ping" }));
