@@ -17,11 +17,11 @@ export const enum ROUTER {
   LOGIN = "/",
   NOT_FOUND = "/error/404",
   SERVER_ERROR = "/error/500",
-  REGISTER = "/register",
-  CHATS = "/chats",
-  VIEW_PROFILE = "/profile",
-  EDIT_PROFILE = "/profile/editProfile",
-  EDIT_PASSWORD = "/profile/editPassword",
+  REGISTER = "/sign-up",
+  CHATS = "/messenger",
+  VIEW_PROFILE = "/settings",
+  EDIT_PROFILE = "/settings/editProfile",
+  EDIT_PASSWORD = "/settings/editPassword",
 }
 
 export const enum WS_EVENTS {
