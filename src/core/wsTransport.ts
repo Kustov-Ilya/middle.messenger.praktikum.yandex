@@ -31,8 +31,6 @@ export default class WSTransport {
   }
 
   getOffsetMessages(offset = "0") {
-    console.log('ofset')
-    console.log(this.socket);
     const body = JSON.stringify({ content: offset, type: "get old" });
     this.socket!.send(body);
   }
@@ -94,7 +92,6 @@ export default class WSTransport {
   }
 
   private removeListeners() {
-    console.log('remove')
     this.socket!.removeEventListener(
       WS_EVENTS.OPEN,
       this.openListener.bind(this)
