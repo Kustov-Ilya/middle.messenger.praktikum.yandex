@@ -90,7 +90,7 @@ class ChatPage extends Block {
     }
     return true;
   }
-
+  
   createMessages() {
     if (this.props.userData) {
       return createMessageList(
