@@ -7,13 +7,17 @@ import MainButton from "../../common/main-button";
 import modalController from "../../../utils/modalController";
 import avatarLogo from "../../../asserts/avatar-logo.svg";
 import UploadFileField from "../../common/upload-file-field";
+import delChat from "../../../asserts/delete.svg";
 import Store from "../../../core/store";
 import {
   addAvatar,
   addUsers,
+  deleteChat,
   deleteUsers,
 } from "../../../services/chatService";
 import { withStore } from "../../../utils/withStore";
+import { RESOURCES_URL } from "../../../utils/consts";
+import { ChatDataType, DeleteChatReqData } from "../../../utils/types";
 
 const store = Store.Instance();
 
@@ -42,6 +46,11 @@ function addChatAvatarHandler(e: Event) {
   store.dispatch(addAvatar, formData);
 }
 
+function deleteChatHandler(chatId: number) {
+  const reqData = { chatId: chatId } as DeleteChatReqData;
+  store.dispatch(deleteChat, reqData);
+}
+
 class ChatHeader extends Block {
   constructor(props: BlockProps = {}) {
     super("ChatHeader", props);
@@ -52,6 +61,8 @@ class ChatHeader extends Block {
     this.props.addIcon = addIcon;
     this.props.hiddenMenu = true;
     this.props.avatarLogo = avatarLogo;
+    this.props.delChat = delChat;
+    this.props.resourceURL = RESOURCES_URL;
 
     if (!this.props.events) this.props.events = {};
     (this.props.events as BlockEvents).click = this.onClick.bind(this);
@@ -85,6 +96,24 @@ class ChatHeader extends Block {
     if (classes.includes("chat-header__change-avatar")) {
       this.showModalAvatar();
     }
+    if (classes.includes("chat-header__delete-chat")) {
+      this.showModalDeleteChat();
+    }
+  }
+  showModalDeleteChat() {
+    const formSettings = {
+      title: "Удалить чат",
+      button: new MainButton({
+        text: "Удалить",
+      }),
+    };
+    const chatId = (this.props.selectedChat as ChatDataType).id;
+    modalController(
+      this.children,
+      this.dispatchComponentDidMount.bind(this),
+      () => deleteChatHandler(chatId),
+      formSettings
+    );
   }
 
   showModalAvatar() {

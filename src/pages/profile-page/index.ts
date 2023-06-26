@@ -1,4 +1,5 @@
 import Block, { BlockProps, BlockEvents } from "../../core/block";
+import { RESOURCES_URL } from "../../utils/consts";
 import ProfileField from "../../components/common/profile-field";
 import template from "./profile-page.hbs";
 import MainButton from "../../components/common/main-button";
@@ -84,6 +85,7 @@ class ProfilePage extends Block {
     this.props.profileLogo = profileLogo;
     this.props.editPass = type == "editPassword";
     this.props.backToChats = ROUTER.CHATS;
+    this.props.resourceURL = RESOURCES_URL;
 
     const userData = this.props.userData as UserData;
     this.children.fields = profileSettings.fields.map((fieldMeta) => {

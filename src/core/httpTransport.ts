@@ -10,8 +10,12 @@ export default class HTTPTransport {
     return `${HTTPTransport.apiEndpoint}/${url}`;
   }
   get: HTTPMethod = (url, options = {}) => {
+    const urlWithParams = `${url}${queryStringify(
+      options.data as Record<string, unknown>
+    )}`;
+    delete options.data;
     return this.request(
-      url,
+      urlWithParams,
       { ...options, method: METHODS.GET },
       options.timeout
     );
@@ -68,23 +72,12 @@ export default class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      switch (method) {
-        case METHODS.GET:
-          xhr.open(
-            method,
-            `${fullUrl}${queryStringify(data as Record<string, unknown>)}`
-          );
-          xhr.send();
-          break;
-        default:
-          if (!data) {
-            xhr.send();
-          } else if (data!.constructor === FormData) {
-            xhr.send(data as FormData);
-          } else {
-            xhr.send(JSON.stringify(data));
-          }
-          break;
+      if (!data) {
+        xhr.send();
+      } else if (data!.constructor === FormData) {
+        xhr.send(data);
+      } else {
+        xhr.send(JSON.stringify(data));
       }
     });
   };

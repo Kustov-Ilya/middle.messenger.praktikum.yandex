@@ -2,7 +2,7 @@
   <div class="chat-header__user-info">
     <div class="chat-header__logo">
       {{#if selectedChat.avatar}}
-      <img src="https://ya-praktikum.tech/api/v2/resources/{{selectedChat.avatar}}" alt="аватар чата" class="profile__logo" />
+      <img src="{{resourceURL}}/{{selectedChat.avatar}}" alt="аватар чата" class="profile__logo" />
     {{/if}}
     </div>
     <p class="chat-header__name">{{selectedChat.title}}</p>
@@ -38,6 +38,14 @@
         alt="Иконка изменения аватара чата"
       />
       <p class="chat-header__menu-text">Изменить аватар</p>
+    </li>
+    <li class="chat-header__menu-item chat-header__delete-chat">
+      <img
+        class="chat-header__menu-img"
+        src="{{delChat}}"
+        alt="Иконка изменения аватара чата"
+      />
+      <p class="chat-header__menu-text">Удалить чат</p>
     </li>
   </ul>
   {{{modal}}}

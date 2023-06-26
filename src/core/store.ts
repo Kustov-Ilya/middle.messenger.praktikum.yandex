@@ -26,8 +26,7 @@ export default class Store extends EventBus {
     this.emit("changed", prevState, this.state);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public dispatch(nextStateOrAction: AppState | Action, payload?: any) {
+  public dispatch(nextStateOrAction: AppState | Action, payload?: unknown) {
     if (typeof nextStateOrAction === "function") {
       nextStateOrAction(this.dispatch.bind(this), this.state, payload);
     } else {

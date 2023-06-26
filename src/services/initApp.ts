@@ -1,9 +1,9 @@
-import { authAPI, } from "../api/authAPI";
+import { authAPI } from "../api/authAPI";
 import { hasError } from "../utils/errorHandler";
-import { Dispatch, UserData } from "../utils/types";
+import { DispatchStateHandler, UserData } from "../utils/types";
 import { logout } from "./authService";
 
-export async function initApp(dispatch: Dispatch) {
+export const initApp: DispatchStateHandler<null> = async (dispatch) => {
   try {
     const userDataResponse = await authAPI.getUserData();
     if (hasError(userDataResponse)) {
@@ -19,4 +19,4 @@ export async function initApp(dispatch: Dispatch) {
   } finally {
     dispatch({ appIsInited: true });
   }
-}
+};

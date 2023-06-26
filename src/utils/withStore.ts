@@ -17,8 +17,7 @@ export function withStore<T>(WrappedBlock: T, fieldNames: string[]) {
           acc[fieldName] =
             typeof value == "object" ? cloneDeep(value as object) : value;
           return acc;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }, {} as Record<string, any>),
+        }, {} as Record<string, unknown>),
       });
     }
 
@@ -32,8 +31,7 @@ export function withStore<T>(WrappedBlock: T, fieldNames: string[]) {
             acc[fieldName] =
               typeof value == "object" ? cloneDeep(value as object) : value;
             return acc;
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          }, {} as Record<string, any>),
+          }, {} as Record<string, unknown>),
         });
       }
     }

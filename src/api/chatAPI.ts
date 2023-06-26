@@ -1,5 +1,9 @@
 import HTTPTransport from "../core/httpTransport";
-import { CreateChatReqData, UsersChatReq } from "../utils/types";
+import {
+  CreateChatReqData,
+  DeleteChatReqData,
+  UsersChatReq,
+} from "../utils/types";
 
 const httpTransport = new HTTPTransport();
 
@@ -13,6 +17,14 @@ export const chatAPI = {
   },
   async createChat(data: CreateChatReqData) {
     return httpTransport.post(`/chats`, {
+      headers: {
+        "content-type": "application/json",
+      },
+      data: data,
+    });
+  },
+  async deleteChat(data: DeleteChatReqData) {
+    return httpTransport.delete(`/chats`, {
       headers: {
         "content-type": "application/json",
       },

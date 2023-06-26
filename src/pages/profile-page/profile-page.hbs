@@ -14,7 +14,7 @@
     <div class="profile__container">
       <div class="profile__logo-container">
         <img src="{{#if userData.avatar}}
-              https://ya-praktikum.tech/api/v2/resources/{{userData.avatar}}{{else}}{{profileLogo}}
+              {{resourceURL}}/{{userData.avatar}}{{else}}{{profileLogo}}
           {{/if}}" alt="Аватарка" class="profile__logo" />
         <div class="profile__logo-overlay">
           Поменять<br />аватар
