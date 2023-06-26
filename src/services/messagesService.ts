@@ -7,27 +7,47 @@ const store = Store.Instance();
 const wsTransport = new WSTransport();
 
 export function sendMessage(message: string) {
-  wsTransport.sendMessage(message, "message");
+  try {
+    wsTransport.sendMessage(message, "message");
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+  }
 }
 
 export async function sendFile(data: FormData) {
-  const response = await resourceAPI.createResource(data);
-  const fileResp = JSON.parse(response.responseText) as MessageFileType;
-  const fileRespId = fileResp.id;
-  wsTransport.sendMessage(fileRespId, "file");
+  try {
+    const response = await resourceAPI.createResource(data);
+    const fileResp = JSON.parse(response.responseText) as MessageFileType;
+    const fileRespId = fileResp.id;
+    wsTransport.sendMessage(fileRespId, "file");
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+  }
 }
 
 export async function openConnection() {
-  wsTransport.close();
-  const state = store.getState();
-  const userId = state.userData?.id;
-  const chatId = state.selectedChat?.id;
-  const token = state.chatToken;
-  if (userId && chatId && token) {
-    setTimeout(() => wsTransport.open(userId, chatId, token), 0);
+  try {
+    wsTransport.close();
+    const state = store.getState();
+    const userId = state.userData?.id;
+    const chatId = state.selectedChat?.id;
+    const token = state.chatToken;
+    if (userId && chatId && token) {
+      setTimeout(() => wsTransport.open(userId, chatId, token), 0);
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
   }
 }
 
 export function closeConnection() {
-  wsTransport.close();
+  try {
+    wsTransport.close();
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+  }
 }

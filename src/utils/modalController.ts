@@ -5,7 +5,7 @@ export default function modalController(
   children: BlockChilds,
   dispatch: () => void,
   handler: (e: Event) => void,
-  formSettings: { title: string; field: Block; button: Block }
+  formSettings: Partial<{ title: string; field: Block; button: Block }>
 ) {
   children.modal = new Modal({
     ...formSettings,

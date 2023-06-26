@@ -33,6 +33,7 @@ export const enum WS_EVENTS {
 
 export const API_ENDPOINT = "https://ya-praktikum.tech/api/v2";
 export const WS_ENDPOINT = "wss://ya-praktikum.tech/ws/chats";
+export const RESOURCES_URL = API_ENDPOINT + "/resources";
 export const ROOT_QUERY = "#root";
 
 export const PATTERNS = {

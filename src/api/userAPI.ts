@@ -16,15 +16,6 @@ export const userAPI = {
       data: data,
     });
   },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async updateProfileAvatar(data: any) {
-    return httpTransport.put(`/user/profile/avatar`, {
-      headers: {
-        "content-type": "application/json",
-      },
-      data: data as Record<string, string>,
-    });
-  },
   async updateProfile(data: UserDataType) {
     return httpTransport.put(`/user/profile`, {
       headers: {

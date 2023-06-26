@@ -75,6 +75,8 @@ export type ChatDataType = {
 };
 export type CreateChatReqData = { title: string };
 
+export type DeleteChatReqData = { chatId: number };
+
 export type UsersChatReq = {
   users: Array<number>;
   chatId: number;
@@ -140,6 +142,12 @@ export type Action = (
   state: AppState,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload: any
+) => void;
+
+export type DispatchStateHandler<TAction> = (
+  dispatch: Dispatch,
+  _state: AppState,
+  action: TAction
 ) => void;
 
 // validation

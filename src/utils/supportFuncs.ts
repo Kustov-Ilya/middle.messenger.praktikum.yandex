@@ -83,7 +83,7 @@ export function isEqual(x: unknown, y: unknown): boolean {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function cloneDeep(obj: { [key: string]: any }): any {
+export function cloneDeep(obj: { [key: string]: any }): unknown {
   if (obj === null) return null;
   const clone = Object.assign({}, obj);
   for (const key in clone) {
@@ -93,8 +93,7 @@ export function cloneDeep(obj: { [key: string]: any }): any {
     clone.length = obj.length;
     return Array.from(clone as []);
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return clone as any;
+  return clone as unknown;
 }
 
 export default function queryStringify(data: Record<string, unknown> = {}) {
