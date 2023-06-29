@@ -1,4 +1,4 @@
-import Block, { BlockProps } from "../../../utils/block";
+import Block, { BlockProps } from "../../../core/block";
 import template from "./date-separator.hbs";
 
 export default class DateSeparator extends Block {

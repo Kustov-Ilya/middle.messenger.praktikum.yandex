@@ -1,6 +1,6 @@
 <main class="profile">
   <article class="profile__side-part">
-    <form action="/chat">
+    <form action="{{backToChats}}">
       <button class="profile__back-button">
         <img
           class="profile__arrow"
@@ -13,12 +13,14 @@
   <section class="profile__work-area">
     <div class="profile__container">
       <div class="profile__logo-container">
-        <img src="{{profileLogo}}" alt="" class="profile__logo" />
+        <img src="{{#if userData.avatar}}
+              {{resourceURL}}/{{userData.avatar}}{{else}}{{profileLogo}}
+          {{/if}}" alt="Аватарка" class="profile__logo" />
         <div class="profile__logo-overlay">
           Поменять<br />аватар
         </div>
       </div>
-      <div class="profile__name">{{userName}}</div>
+      <div class="profile__name">{{userData.second_name}} {{userData.first_name}}</div>
       <form class="profile__fields-block">
         {{#each fields}}
           <div class="profile__field-container">

@@ -1,10 +1,11 @@
 import Modal from "../components/common/modal-window";
-import Block, { BlockChilds } from "./block";
+import Block, { BlockChilds } from "../core/block";
 
 export default function modalController(
   children: BlockChilds,
   dispatch: () => void,
-  formSettings: { title: string; field: Block; button: Block }
+  handler: (e: Event) => void,
+  formSettings: Partial<{ title: string; field: Block; button: Block }>
 ) {
   children.modal = new Modal({
     ...formSettings,
@@ -13,6 +14,12 @@ export default function modalController(
         if ((e.target as HTMLElement).className != "modal-window") {
           return;
         }
+        delete children.modal;
+        dispatch();
+      },
+      submit: (e: Event) => {
+        e.preventDefault();
+        handler(e);
         delete children.modal;
         dispatch();
       },

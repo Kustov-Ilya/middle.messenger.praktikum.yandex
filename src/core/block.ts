@@ -1,6 +1,7 @@
 import EventBus from "./eventBus";
 import { nanoid } from "nanoid";
-import { EVENTS } from "./consts";
+import { EVENTS } from "../utils/consts";
+import { cloneDeep, isEqual } from "../utils/supportFuncs";
 
 export type BlockProps = Record<string, unknown>;
 export type BlockChilds = Record<string, Block | Block[]>;
@@ -22,7 +23,7 @@ export default abstract class Block {
       props,
     };
 
-    this.props = this._makePropsProxy(props);
+    this.props = props;
     this.children = children;
 
     this.eventBus = () => eventBus;
@@ -35,6 +36,7 @@ export default abstract class Block {
     eventBus.on(EVENTS.INIT, this._init.bind(this));
     eventBus.on(EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -108,13 +110,15 @@ export default abstract class Block {
   private _init(): void {
     this._createResources();
     this.init();
-    this.eventBus().emit(EVENTS.FLOW_CDM);
+    this.props = this._makePropsProxy(this.props);
+    this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   protected init(): void {}
 
   private _componentDidMount(): void {
+    this._checkInDom();
     this.componentDidMount();
     this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
@@ -131,22 +135,35 @@ export default abstract class Block {
       oldProps as BlockProps,
       newProps as BlockProps
     );
-    if (!response) {
-      return;
+    if (response) {
+      this.eventBus().emit(EVENTS.FLOW_RENDER);
     }
-    this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
   protected componentDidUpdate(
     oldProps: BlockProps,
     newProps: BlockProps
   ): boolean {
-    // Because without this error on ts (unused vars)
-    if (oldProps == newProps) {
-      return true;
+    if (isEqual(oldProps, newProps)) {
+      return false;
     }
     return true;
   }
+
+  private _checkInDom() {
+    const elementInDOM = document.body.contains(this.element);
+    if (elementInDOM) {
+      setTimeout(() => this._checkInDom(), 1000);
+      return;
+    }
+    this.eventBus().emit(EVENTS.FLOW_CWU, this.props);
+  }
+
+  private _componentWillUnmount() {
+    this.componentWillUnmount();
+  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  protected componentWillUnmount() {}
 
   setProps(nextProps: BlockProps): void {
     if (!nextProps) {
@@ -162,8 +179,9 @@ export default abstract class Block {
   private _render(): void {
     const block = this.render();
     this._removeEvents();
-    this._element!.innerHTML = "";
-    this._element!.append(block);
+    const newElement = block.firstElementChild as HTMLElement;
+    this._element!.replaceWith(newElement);
+    this._element = newElement;
     this._addEvents();
   }
 
@@ -172,6 +190,16 @@ export default abstract class Block {
   }
 
   public getContent() {
+    if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+      setTimeout(() => {
+        if (
+          this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE
+        ) {
+          this.eventBus().emit(EVENTS.FLOW_CDM);
+        }
+      }, 100);
+    }
+
     return this.element;
   }
 
@@ -184,8 +212,10 @@ export default abstract class Block {
         return typeof value === "function" ? value.bind(target) : value;
       },
       set(target, prop, val) {
+        const oldTarget = cloneDeep(target);
+
         target[prop as string] = val;
-        self.eventBus().emit(EVENTS.FLOW_CDU, { ...target }, { [prop]: val });
+        self.eventBus().emit(EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {
@@ -219,5 +249,9 @@ export default abstract class Block {
 
   public hide(): void {
     this.getContent()!.style.display = "none";
+  }
+
+  public destroy() {
+    this._element!.remove();
   }
 }

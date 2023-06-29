@@ -1,64 +1,121 @@
-import Block, { BlockProps } from "../../utils/block";
+import Block, { BlockProps } from "../../core/block";
 import template from "./chat-page.hbs";
 import SidebarHeader from "../../components/sidebar/sidebar-header";
 import SearchLine from "../../components/sidebar/search-line";
-import ChatItem from "../../components/sidebar/chat-item";
 import ChatHeader from "../../components/chat/chat-header";
 import ChatFooter from "../../components/chat/chat-footer";
-import TextMessage from "../../components/chat/text-message";
-import ImageMessage from "../../components/chat/image-message";
-import DateSeparator from "../../components/chat/date-separator";
+import { withStore } from "../../utils/withStore";
+import Store from "../../core/store";
+import { getChats, getToken } from "../../services/chatService";
+import { isEqual } from "../../utils/supportFuncs";
+import {
+  createChatList,
+  createMessageList,
+} from "../../utils/createChatElements";
+import { validation } from "../../utils/validation";
+import { openConnection, sendMessage } from "../../services/messagesService";
+import { ChatDataType, MessageDataType, UserData } from "../../utils/types";
 
-import { dateFormat, timeFormat } from "../../utils/dttmFormat";
-import { getChatList, getMessages } from "../../utils/getChatsData";
+const store = Store.Instance();
 
-export default class ChatPage extends Block {
+function onClickChatItem(id: number) {
+  const selectedChat = store
+    .getState()
+    .chatsData?.filter((chat) => chat.id == id)[0];
+  if (selectedChat) {
+    store.dispatch({ selectedChat: selectedChat });
+    store.dispatch(getToken, selectedChat.id);
+  }
+}
+
+function sendMessageSubmit(e: Event) {
+  e.preventDefault();
+  if ((e.target as HTMLFormElement).className != "chat-footer__form") return;
+  const inputClass = "chat-footer__new-message";
+  const target = (e.target! as HTMLElement).getElementsByClassName(
+    inputClass
+  )[0] as HTMLInputElement;
+  const resultOfValidation = validation(target.value, target.name, target.type);
+
+  if (resultOfValidation.isValid) {
+    sendMessage(target.value);
+    target.value = "";
+  } else {
+    throw new Error(resultOfValidation.error);
+  }
+}
+
+class ChatPage extends Block {
   constructor(props: BlockProps = {}) {
     super("LogonPage", props);
   }
 
   protected init(): void {
-    const chats: Block[] | null = this.createChatList();
-    const messages: Block[] | null = this.createMessages();
+    const chats: Block[] = this.createChats();
+    const messages: Block[] = this.createMessages();
     this.children.chats = chats;
     this.children.messages = messages;
     this.children.sidebarHeader = new SidebarHeader();
     this.children.searchLine = new SearchLine();
     this.children.chatHeader = new ChatHeader();
-    this.children.chatFooter = new ChatFooter();
+    this.children.chatFooter = new ChatFooter({
+      events: {
+        submit: (e: Event) => sendMessageSubmit(e),
+      },
+    });
+  }
+
+  protected componentDidMount(): void {
+    (this.props.store as Store).dispatch(getChats);
+  }
+
+  protected componentDidUpdate(
+    oldProps: BlockProps,
+    newProps: BlockProps
+  ): boolean {
+    if (isEqual(oldProps, newProps)) return false;
+    if (oldProps.chatsData != newProps.chatsData) {
+      this.children.chats = this.createChats();
+    }
+    if (oldProps.messageData != newProps.messageData) {
+      this.children.messages = this.createMessages();
+    }
+    if (oldProps.selectedChat != newProps.selectedChat) {
+      (this.children.chatHeader as Block).setProps({
+        selectedChat: this.props.selectedChat,
+      });
+    }
+    if (oldProps.chatToken != newProps.chatToken) {
+      openConnection();
+    }
+    return true;
+  }
+
+  createMessages() {
+    if (this.props.userData) {
+      return createMessageList(
+        this.props.messageData as MessageDataType[],
+        (this.props.userData as UserData).id
+      );
+    } else return [];
+  }
+
+  createChats() {
+    return createChatList(
+      this.props.chatsData as ChatDataType[],
+      onClickChatItem
+    );
   }
 
   protected render(): DocumentFragment {
     return this.compile(template, this.props);
   }
-
-  createChatList() {
-    const chats = getChatList();
-    return chats.map(
-      (chat) => new ChatItem({ ...chat, date: dateFormat(chat.date) })
-    );
-  }
-
-  createMessages() {
-    const messages = getMessages();
-    const messageListWithSeps: { date: string; arr: Block[] } = messages.reduce(
-      (acc, message) => {
-        const date = dateFormat(message.date);
-        if (date != acc.date) {
-          acc.arr.push(
-            new DateSeparator({ date: date.slice(0, date.length - 4) })
-          );
-          acc.date = date;
-        }
-        acc.arr.push(
-          message.imageMessage
-            ? new ImageMessage({ ...message, time: timeFormat(message.date) })
-            : new TextMessage({ ...message, time: timeFormat(message.date) })
-        );
-        return acc;
-      },
-      { date: "", arr: [] as Block[] }
-    );
-    return messageListWithSeps.arr;
-  }
 }
+
+export default withStore(ChatPage, [
+  "chatsData",
+  "chatToken",
+  "selectedChat",
+  "userData",
+  "messageData",
+]);

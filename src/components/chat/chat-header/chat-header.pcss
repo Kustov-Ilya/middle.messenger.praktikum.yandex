@@ -1,7 +1,6 @@
 .chat-header {
   height: 54px;
   width: 100%;
-  z-index: 100;
 
   &__user-info {
     display: inline-flex;
@@ -12,13 +11,16 @@
     margin-top: 5px;
     margin-bottom: 5px;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       border-radius: 10px;
       background-color: var(--hovered-color);
     }
   }
 
   &__logo {
+    @mixin flex-center;
+    overflow: hidden;
     flex-shrink: 0;
     width: 34px;
     height: 34px;
@@ -40,7 +42,8 @@
     width: 25px;
     height: 25px;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: var(--hovered-color);
       border-radius: 50%;
     }
@@ -48,6 +51,10 @@
 
   &__options {
     height: 16px;
+  }
+
+  &__delete-chat {
+    color: red;
   }
 
   &:after {
@@ -68,7 +75,7 @@
     box-sizing: border-box;
 
     width: 210px;
-    height: 90px;
+    height: 160px;
     padding: 10px;
     border-radius: 12px;
     background-color: white;
@@ -82,10 +89,11 @@
   &__menu-item {
     display: flex;
     align-items: center;
-    
+
     padding: 5px;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: var(--hovered-color);
       border-radius: 10px;
     }

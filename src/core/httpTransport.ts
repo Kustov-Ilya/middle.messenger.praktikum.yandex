@@ -1,11 +1,21 @@
-import { METHODS } from "./consts";
-import queryStringify from "./queryStringify";
-import { HTTPMethod, RequestOptions } from "./types";
+import { METHODS } from "../utils/consts";
+import { HTTPMethod, RequestOptions } from "../utils/types";
+import { API_ENDPOINT } from "../utils/consts";
+import queryStringify from "../utils/supportFuncs";
 
 export default class HTTPTransport {
+  private static apiEndpoint: string = API_ENDPOINT;
+
+  private getFullUrl(url: string) {
+    return `${HTTPTransport.apiEndpoint}/${url}`;
+  }
   get: HTTPMethod = (url, options = {}) => {
+    const urlWithParams = `${url}${queryStringify(
+      options.data as Record<string, unknown>
+    )}`;
+    delete options.data;
     return this.request(
-      url,
+      urlWithParams,
       { ...options, method: METHODS.GET },
       options.timeout
     );
@@ -38,6 +48,7 @@ export default class HTTPTransport {
     timeout = 5000
   ): Promise<XMLHttpRequest> => {
     const { method, data, headers } = options;
+    const fullUrl = this.getFullUrl(url);
 
     return new Promise((resolve, reject) => {
       if (!method) {
@@ -45,7 +56,7 @@ export default class HTTPTransport {
         return;
       }
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      xhr.open(method, fullUrl);
       if (headers) {
         Object.keys(headers).forEach((key) => {
           xhr.setRequestHeader(key, headers[key]);
@@ -55,28 +66,18 @@ export default class HTTPTransport {
       xhr.onload = function () {
         resolve(xhr);
       };
-
+      xhr.withCredentials = true;
       xhr.timeout = timeout;
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      switch (method) {
-        case METHODS.GET:
-          xhr.open(method, `${url}${queryStringify(data)}`);
-          xhr.send();
-          break;
-        case METHODS.POST:
-          xhr.send(JSON.stringify(data));
-          break;
-        case METHODS.PUT:
-          xhr.send(JSON.stringify(data));
-          break;
-        case METHODS.DELETE:
-          xhr.send();
-          break;
-        default:
-          throw new Error("No method");
+      if (!data) {
+        xhr.send();
+      } else if (data!.constructor === FormData) {
+        xhr.send(data);
+      } else {
+        xhr.send(JSON.stringify(data));
       }
     });
   };

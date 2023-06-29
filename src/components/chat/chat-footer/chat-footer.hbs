@@ -13,6 +13,7 @@
         type="text"
         name="message"
         placeholder="Сообщение"
+        value=""
       />
       <button class="chat-footer__send-message">
         <img
@@ -22,31 +23,16 @@
         />
       </button>
     </form>
+    <ul class="chat-footer__sub-menu {{#if hiddenMenu}}chat-footer__sub-menu_hidden{{/if}}">
+      <li class="chat-footer__menu-item chat-footer__send-photo">
+        <img
+          class="chat-footer__menu-img"
+          src="{{photoIcon}}"
+          alt="Иконка добавления фото или видео в сообщение"
+        />
+        <p class="chat-footer__menu-text">Фото</p>
+      </li>
+    </ul>
   </div>
-  <ul class="chat-footer__sub-menu {{#if hiddenMenu}}chat-footer__sub-menu_hidden{{/if}}">
-    <li class="chat-footer__menu-item">
-      <img
-        class="chat-footer__menu-img"
-        src="{{photoIcon}}"
-        alt="Иконка добавления фото или видео в сообщение"
-      />
-      <p class="chat-footer__menu-text">Фото или видео</p>
-    </li>
-    <li class="chat-footer__menu-item">
-      <img
-        class="chat-footer__menu-img"
-        src="{{fileIcon}}"
-        alt="Иконка добавления файла к сообщению"
-      />
-      <p class="chat-footer__menu-text">Файл</p>
-    </li>
-    <li class="chat-footer__menu-item">
-      <img
-        class="chat-footer__menu-img"
-        src="{{locationIcon}}"
-        alt="Иконка кнопки скидывания локации"
-      />
-      <p class="chat-footer__menu-text">Локация</p>
-    </li>
-  </ul>
+  {{{modal}}}
 </footer>

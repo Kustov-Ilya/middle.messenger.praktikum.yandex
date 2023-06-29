@@ -11,10 +11,6 @@
     padding: 10px 10px;
     margin: 2px 0px;
 
-    &_selected {
-      background-color: var(--selected-color) !important;
-    }
-
     &:hover,
     &:focus {
       background-color: var(--hovered-color);
@@ -22,6 +18,8 @@
   }
 
   &__icon {
+    @mixin flex-center;
+    overflow: hidden;
     flex-shrink: 0;
     width: 47px;
     height: 47px;

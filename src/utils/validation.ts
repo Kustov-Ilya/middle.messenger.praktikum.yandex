@@ -1,5 +1,6 @@
-import Block from "./block";
+import Block from "../core/block";
 import { PATTERNS } from "./consts";
+import { ValidationAttrs } from "./types";
 
 function checkRegexOnError(value: string, type: keyof typeof PATTERNS) {
   return PATTERNS[type].regex.test(value) ? "" : PATTERNS[type].error;
@@ -31,7 +32,7 @@ export function validation(
 }
 
 export function validationForm(fields: Block[]) {
-  return fields.map((field) => {
+  return fields.reduce((acc, field) => {
     const target = field.element?.getElementsByTagName(
       "INPUT"
     )[0] as HTMLInputElement;
@@ -40,12 +41,12 @@ export function validationForm(fields: Block[]) {
     field.setProps({
       helper: result.error,
     });
-
-    return {
+    acc[target.name] = {
       ...result,
       name: target.name,
       value: target.value,
       type: target.type,
     };
-  });
+    return acc;
+  }, {} as Record<string, ValidationAttrs>);
 }
