@@ -1,11 +1,9 @@
 .profile {
   display: flex;
-
   height: 100%;
 
   &__side-part {
     @mixin flex-center;
-
     width: 64px;
     height: 100%;
     background-color: var(--side-part-color);
@@ -18,6 +16,7 @@
     border-radius: 50%;
     background-color: var(--buttom-blue-color);
   }
+
   &__arrow {
     transform: rotate(180deg);
     height: 20px;
@@ -31,7 +30,6 @@
   &__container {
     @mixin flex-column;
     align-items: center;
-
     height: 565px;
     width: 510px;
   }
@@ -56,7 +54,6 @@
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -81,13 +78,13 @@
   &__fields-block {
     @mixin flex-column;
     align-items: center;
-
     width: 100%;
     height: fit-content;
   }
 
   &__field-container {
     width: 100%;
+
     &:not(:nth-last-of-type(-n + 2)) {
       border-bottom: 1px solid var(--gray-color);
     }
@@ -111,6 +108,7 @@
     width: 100%;
     padding-bottom: 10px;
     padding-top: 10px;
+    
     &:not(:last-child) {
       border-bottom: 1px solid var(--gray-color);
     }

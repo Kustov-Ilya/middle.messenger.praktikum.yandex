@@ -5,12 +5,12 @@
 
   &__sidebar-container {
     @mixin flex-column;
-
     width: 25%;
     height: 100%;
     background-color: var(--side-part-color);
     border-right: 1px solid var(--gray-color);
   }
+  
   &__chat-container {
     @mixin flex-column;
     flex-grow: 1;
@@ -21,12 +21,6 @@
 .chats-list {
   flex-grow: 1;
   overflow-y: auto;
-
-  &:hover,
-  &:active,
-  &:focus {
-    overflow-y: auto;
-  }
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -40,6 +34,12 @@
   &::-webkit-scrollbar-thumb {
     border-radius: 8px;
     background: var(--gray-color);
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    overflow-y: auto;
   }
 }
 
