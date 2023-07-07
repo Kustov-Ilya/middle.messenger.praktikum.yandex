@@ -39,6 +39,3 @@
 - `docker build -t middle-messenger-praktikum-yandex .` — сборка docker image
 - `docker run -p 3000:3000 -d middle-messenger-praktikum-yandex` — запуск docker image
 
-docker build -t lesson .  
-docker run -p 3000:3000 -d lesson
-
