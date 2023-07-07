@@ -26,6 +26,7 @@ export default abstract class Block {
     this.props = props;
     this.children = children;
 
+    this.props = this._makePropsProxy(this.props);
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
@@ -110,7 +111,6 @@ export default abstract class Block {
   private _init(): void {
     this._createResources();
     this.init();
-    this.props = this._makePropsProxy(this.props);
     this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
@@ -212,6 +212,7 @@ export default abstract class Block {
         return typeof value === "function" ? value.bind(target) : value;
       },
       set(target, prop, val) {
+        self.eventBus().emit(EVENTS.FLOW_RENDER);
         const oldTarget = cloneDeep(target);
 
         target[prop as string] = val;

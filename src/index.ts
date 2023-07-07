@@ -1,3 +1,4 @@
+import "./styles/styles.pcss";
 import { initApp } from "./services/initApp";
 import Store from "./core/store";
 import initRouter from "./router";

@@ -1,12 +1,13 @@
 import { WS_ENDPOINT, WS_EVENTS } from "../utils/consts";
 import { cloneDeep } from "../utils/supportFuncs";
+import { MessageDataType, MessageFileType } from "../utils/types";
 import Store from "./store";
 
 const store = Store.Instance();
 
 export default class WSTransport {
   private socket?: WebSocket;
-  private pingInterval?: number;
+  private pingInterval?: NodeJS.Timer;
 
   open(userId: number, chatId: number, token: string) {
     if (!this.pingInterval) {
@@ -36,7 +37,7 @@ export default class WSTransport {
   }
 
   private openListener() {
-    setTimeout(this.getOffsetMessages.bind(this),50);
+    setTimeout(this.getOffsetMessages.bind(this), 50);
 
     this.pingInterval = setInterval(() => {
       this.socket!.send(JSON.stringify({ type: "ping" }));
@@ -65,7 +66,12 @@ export default class WSTransport {
         if (messageData) {
           store.set({ messageData: [...messageData, ...data] });
         } else {
-          store.set({ messageData: cloneDeep(data.reverse()) });
+          store.set({
+            messageData: cloneDeep(data.reverse()) as (
+              | MessageFileType
+              | MessageDataType
+            )[],
+          });
         }
       }
     }
