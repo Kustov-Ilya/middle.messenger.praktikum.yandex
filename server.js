@@ -3,7 +3,13 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(express.static("./dist"));
+const rootPath = `${__dirname}/dist`;
+
+app.use(express.static(rootPath));
+
+app.get("/*", (req, res) => {
+  res.sendFile(`${rootPath}/index.html`);
+});
 
 app.listen(PORT, () => {
   console.log(`Port: ${PORT}`);
