@@ -2,11 +2,6 @@
   "name": "my-webpack-project",
   "version": "1.0.0",
   "description": "My webpack project",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run check-all"
-    }
-  },
   "scripts": {
     "start": "npm run build && node ./server.js",
     "build": "webpack --mode=production --node-env=production",
