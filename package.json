@@ -4,7 +4,7 @@
   "description": "My webpack project",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run pre-commit"
+      "pre-commit": "npm run check-all"
     }
   },
   "scripts": {
@@ -14,7 +14,7 @@
     "build:prod": "webpack --mode=production --node-env=production",
     "eslint": "node_modules/.bin/eslint .",
     "stylelint": "stylelint src/**/*.{pcss,css}",
-    "pre-commit": "npm run eslint && npm run stylelint & npm run test",
+    "check-all": "npm run eslint && npm run stylelint & npm run test",
     "test": "mocha --require ts-node/register --require ./mochaSettings.js './src/**/*.test.ts'",
     "serve": "webpack serve"
   },
