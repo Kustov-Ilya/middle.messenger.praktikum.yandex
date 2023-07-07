@@ -12,6 +12,8 @@ describe("HTTPTransport", () => {
     requests = [];
     httpTransport = new HTTPTransport();
     fakeXMLHttpRequest = sinon.useFakeXMLHttpRequest();
+
+    //eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     global.XMLHttpRequest = fakeXMLHttpRequest;
 

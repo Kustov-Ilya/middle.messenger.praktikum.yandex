@@ -12,8 +12,6 @@ global.document = window.document;
 global.DocumentFragment = window.DocumentFragment;
 global.location = window.location;
 
-global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
-
 require.extensions[".hbs"] = function (module, filename) {
   const contents = fs.readFileSync(filename, "utf-8");
   module.exports = Handlebars.compile(contents);

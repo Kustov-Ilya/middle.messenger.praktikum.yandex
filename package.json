@@ -12,9 +12,10 @@
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development && npm run serve",
     "build:prod": "webpack --mode=production --node-env=production",
-    "eslint": "node_modules/.bin/eslint .",
+    "eslint": "eslint src/**/*.ts",
     "stylelint": "stylelint src/**/*.{pcss,css}",
-    "check-all": "npm run eslint && npm run stylelint & npm run test",
+    "lint": "npm run eslint && npm run stylelint",
+    "check-all": "npm run lint & npm run test",
     "test": "mocha --require ts-node/register --require ./mochaSettings.js './src/**/*.test.ts'",
     "serve": "webpack serve",
     "prepare-husky": "husky install"

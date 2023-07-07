@@ -9,7 +9,7 @@ describe("Router", () => {
   let router: Router;
 
   const getContentFake = sinon.fake.returns(document.createElement("div"));
-  const destroyFake = sinon.fake.returns(() => {});
+  const destroyFake = sinon.fake.returns(null);
 
   const BlockMock = class {
     getContent = getContentFake;
