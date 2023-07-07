@@ -11,7 +11,8 @@
     "stylelint": "stylelint src/**/*.{pcss,css}",
     "check-all": "npm run eslint && npm run stylelint & npm run test",
     "test": "mocha --require ts-node/register --require ./mochaSettings.js './src/**/*.test.ts'",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "prepare-husky": "husky install"
   },
   "repository": {
     "type": "git",
