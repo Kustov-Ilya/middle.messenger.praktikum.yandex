@@ -3,7 +3,9 @@
   height: 100%;
 
   &__side-part {
-    @mixin flex-center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 64px;
     height: 100%;
     background-color: var(--side-part-color);
@@ -23,19 +25,24 @@
   }
 
   &__work-area {
-    @mixin flex-center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-grow: 1;
   }
 
   &__container {
-    @mixin flex-column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     height: 565px;
     width: 510px;
   }
 
   &__logo-container {
-    @mixin flex-center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     overflow: hidden;
     width: 130px;
@@ -50,7 +57,9 @@
   }
 
   &__logo-overlay {
-    @mixin flex-center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 0;
     left: 0;
@@ -76,7 +85,8 @@
   }
 
   &__fields-block {
-    @mixin flex-column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     height: fit-content;

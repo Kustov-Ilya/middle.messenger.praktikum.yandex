@@ -4,7 +4,8 @@
   height: 100%;
 
   &__sidebar-container {
-    @mixin flex-column;
+    display: flex;
+    flex-direction: column;
     width: 25%;
     height: 100%;
     background-color: var(--side-part-color);
@@ -12,7 +13,8 @@
   }
 
   &__chat-container {
-    @mixin flex-column;
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
     height: 100%;
   }
@@ -50,7 +52,8 @@
   overflow-y: auto;
 
   &__container {
-    @mixin flex-column;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-end;
   }
 }
