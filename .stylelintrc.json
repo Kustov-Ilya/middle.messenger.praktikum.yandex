@@ -5,7 +5,19 @@
   "rules": {
     "at-rule-no-unknown": null,
     "selector-class-pattern": null,
-    "custom-property-pattern": null
+    "custom-property-pattern": null,
+    "declaration-empty-line-before": "never",
+    "comment-empty-line-before": "always",
+    "no-descending-specificity": true,
+    "rule-empty-line-before": "always",
+    "length-zero-no-unit": true,
+    "selector-pseudo-element-colon-notation": "double",
+    "declaration-block-semicolon-newline-after": "always",
+    "no-eol-whitespace": true,
+    "shorthand-property-no-redundant-values": true,
+    "alpha-value-notation": "percentage",
+    "color-function-notation": "modern",
+    "value-no-vendor-prefix": true
   },
   "ignoreFiles": [
     "dist/*"
