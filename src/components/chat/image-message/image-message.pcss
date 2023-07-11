@@ -1,13 +1,12 @@
 .image-message {
-  @mixin flex-column;
+  display: flex;
+  flex-direction: column;
 
   &__container {
     display: inline-block;
     position: relative;
-
     max-width: 380px;
     max-height: 300px;
-    /* width: fit-content; */
     border-radius: 12px;
     margin-bottom: 10px;
 
@@ -17,7 +16,7 @@
   }
 
   &__image {
-    max-width: 380px; 
+    max-width: 380px;
     max-height: 300px;
     height: 100%;
   }
@@ -30,7 +29,6 @@
 
   &__time {
     display: inline;
-
     font-size: 9px;
     line-height: 9px;
     color: var(--gray-text);

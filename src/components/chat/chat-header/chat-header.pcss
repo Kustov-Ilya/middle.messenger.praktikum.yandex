@@ -5,7 +5,6 @@
   &__user-info {
     display: inline-flex;
     align-items: center;
-
     padding: 5px;
     margin-left: 15px;
     margin-top: 5px;
@@ -19,7 +18,9 @@
   }
 
   &__logo {
-    @mixin flex-center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     flex-shrink: 0;
     width: 34px;
@@ -34,11 +35,12 @@
   }
 
   &__options-button {
-    @mixin flex-center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 14.5px;
     right: 20px;
-
     width: 25px;
     height: 25px;
 
@@ -57,23 +59,23 @@
     color: red;
   }
 
-  &:after {
+  &::after {
     content: "";
     display: block;
     height: 1px;
-    margin: 0px 20px;
+    margin: 0 20px;
     background: var(--gray-color);
   }
 
   &__sub-menu {
-    @mixin box-shadow-black;
-    @mixin flex-column;
+    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     position: absolute;
     top: 65px;
     right: 10px;
     box-sizing: border-box;
-
     width: 210px;
     height: 160px;
     padding: 10px;
@@ -89,7 +91,6 @@
   &__menu-item {
     display: flex;
     align-items: center;
-
     padding: 5px;
 
     &:hover,
